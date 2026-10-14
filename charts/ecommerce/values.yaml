@@ -1,0 +1,48 @@
+fullnameOverride: shop
+replicaCount: 2
+chaosEnabled: false
+
+image:
+  repository: 315335024658.dkr.ecr.ap-south-1.amazonaws.com/ecommerce-app
+  tag: v1
+  pullPolicy: IfNotPresent
+
+database:
+  existingSecret: db-credentials
+
+postgres:
+  image: postgres:16-alpine
+  storageClass: gp3
+  storage: 5Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 512Mi
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 4
+  cpuUtilization: 70
+
+pdb:
+  enabled: true
+  minAvailable: 1
+
+ingress:
+  enabled: false
+  className: traefik
+  host: dev.shop.local
+
+metrics:
+  enabled: false
+  interval: 15s
