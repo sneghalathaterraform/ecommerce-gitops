@@ -1,6 +1,6 @@
 replicaCount: 2
 image:
   tag: v1
-chaosEnabled: true
+chaosEnabled: false
 metrics:
   enabled: true
