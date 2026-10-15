@@ -8,7 +8,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-      {{- include "ecommerce.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/name: ecommerce
+      app.kubernetes.io/instance: {{ .Release.Name }}
   endpoints:
     - port: http
       path: /metrics
