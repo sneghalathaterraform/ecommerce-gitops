@@ -1,6 +1,6 @@
 replicaCount: 2
 image:
-  tag: sha-bd0e4e6
+  tag: sha-e43645d
 chaosEnabled: true
 metrics:
   enabled: true
