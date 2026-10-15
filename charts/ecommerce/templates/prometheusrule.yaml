@@ -1,0 +1,20 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "ecommerce.fullname" . }}
+  labels:
+    {{- include "ecommerce.labels" . | nindent 4 }}
+spec:
+  groups:
+    - name: shop.rules
+      rules:
+        - alert: ShopHigh5xxRate
+          expr: sum(rate(flask_http_request_total{namespace="{{ .Release.Namespace }}",status=~"5.."}[2m])) > 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Shop is returning 5xx errors"
+            description: "The shop app in the dev namespace has returned 5xx responses for more than 1 minute."
+{{- end }}

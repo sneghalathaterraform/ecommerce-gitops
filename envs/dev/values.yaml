@@ -2,3 +2,5 @@ replicaCount: 2
 image:
   tag: v1
 chaosEnabled: true
+metrics:
+  enabled: true
