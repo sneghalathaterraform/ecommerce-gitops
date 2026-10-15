@@ -1,6 +1,6 @@
 replicaCount: 2
 image:
-  tag: v1
+  tag: v2
 chaosEnabled: false
 metrics:
   enabled: true
